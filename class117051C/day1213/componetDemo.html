@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       <!-- <h1>{{article.title}}</h1>
+       <h2>作者：{{article.author}}</h2>
+       <h3>{{article.publishDate}}</h3>
+       <p>
+        <img :src="article.imgSrc"/>   
+        {{article.content}}</p> -->
+        <!-- heart是组件的一个属性，那么组件必须通过props声明最高属性 -->
+        <!-- <hanting v-bind:heart="article"></hanting>
+        <hanting v-bind:heart="article2"></hanting> -->
+            <hanting v-for="article in articleList":key="article.title":heart="article"></hanting>
+    </div>
+    <script>
+        //定义自定义组件
+        //第一个是自定义组件名称，第二个参数是定义该组件的运行规则对象
+        Vue.component('hanting',{
+            props:['heart'],
+
+            //template中定义的是组件的模板，也就是html和{{}}以及Vue指令的组合
+            //template必须要有根标签
+            template:
+            '<div>'+
+                '<h1 style="color:red">{{heart.title}}</h1>'+
+                '<h2>作者：{{heart.author}}</h2>'+
+                '<h3>{{heart.publishDate}}</h3>'+
+                '<p>{{heart.content}}</p>'+
+            '</div>'
+        });
+     var app=new Vue({
+         el:"#app",
+         data:{
+        //    article:{
+        //        title:"论网红是怎样诞生的",
+        //        author:"不详",
+        //        publishDate:"2019-11-11",
+        //        content:"产生原因太多，无法详述",
+        //    },
+        //    article2:{
+        //        title:"论网绿是怎样诞生的",
+        //        author:"不详",
+        //        publishDate:"2019-12-11",
+        //        content:"产生原因太太多，无法详述",
+        //    },
+        articleList:[
+            {
+                title:"论网红是怎样诞生的1",
+                author:"不详",
+                publishDate:"2019-11-11",
+                content:"产生原因太多，无法详述"
+            },
+            {
+                title:"论网绿是怎样诞生的2",
+                author:"不详",
+                publishDate:"2019-12-11",
+                content:"产生原因太多，无法详述"
+            },
+            {
+                title:"论网红是怎样诞生的3",
+                author:"不详",
+                publishDate:"2019-12-12",
+                content:"产生原因太多，无法详述"
+            },
+            {
+                title:"论网红是怎样诞生的4",
+                author:"不详",
+                publishDate:"2019-11-14",
+                content:"产生原因太多，无法详述"
+            },
+        ]
+          }   
+     })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+            <hanting-tt >
+                <template v-slot:title>
+                    {{article.title}}
+                </template>
+                <template v-slot:author>
+                    {{article.author}}
+                 </template>
+                <template v-slot:date>
+                    {{article.publishDate}}
+                </template>
+                        
+                {{article.content}}
+                            
+
+            </hanting-tt>
+    </div>
+    <script>
+        Vue.component('hanting-tt',{
+           
+            //template中定义的是组件的模板，也就是html和{{}}以及Vue指令的组合
+            //template必须要有根标签
+            template:
+            '<div>'+
+                '<h1><slot name="title"></slot></h1>'+
+                '<h2><slot name="author"></slot></h2>'+
+                '<h3><slot name="date"></slot></h3>'+
+                '<p><slot></slot></p>'+
+            '</div>'
+        });
+     var app=new Vue({
+         el:"#app",
+         data:{
+        article:{
+            title:"论网红是怎样诞生的1",
+                author:"不详",
+                publishDate:"2019-11-11",
+                content:"产生原因太多，无法详述"
+        }
+          }   
+     })
+    </script>
+    
+</body>
+</html>
